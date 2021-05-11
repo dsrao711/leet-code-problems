@@ -12,6 +12,6 @@ class Solution(object):
                 if i >= c:
                     rs[i] = min(rs[i], rs[i-c] + 1)
 
-        if rs[amount] == amount+1:
+        if rs[amount] >= amount+1:
             return -1
         return rs[amount]

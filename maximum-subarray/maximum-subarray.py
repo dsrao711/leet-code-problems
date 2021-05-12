@@ -1,3 +1,6 @@
+
+# Using Kadane's Algorithm Approach
+
 class Solution(object):
     def maxSubArray(self, nums):
         """
@@ -17,3 +20,6 @@ class Solution(object):
               maxGlobal = maxCurrent
             
         return maxGlobal
+    
+    
+  

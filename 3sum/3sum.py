@@ -6,12 +6,8 @@ class Solution(object):
         """
         res = set()
         nums.sort()
-        print(nums)
         for i in range(len(nums)-2):
-          if i!=0 and nums[i]==nums[i-1]:
-            continue
-          if nums[i] > 0:
-            break
+    
           target = -(nums[i])
           low = i + 1
           high = len(nums)-1
@@ -24,4 +20,4 @@ class Solution(object):
               low += 1
             else:
               high -= 1
-        return list(res)[::-1]
+        return list(res)

@@ -18,11 +18,10 @@ class Solution:
           
           curr = stack.pop()
           op.append(curr.val)
+         
           
-            
           if(curr.right):
             stack.append(curr.right)
-            
           if(curr.left):
             stack.append(curr.left)
             

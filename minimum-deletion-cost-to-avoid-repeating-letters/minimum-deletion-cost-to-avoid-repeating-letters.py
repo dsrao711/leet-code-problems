@@ -5,20 +5,20 @@ class Solution(object):
         :type cost: List[int]
         :rtype: int
         """
-        total_cost = 0
-        prev_index = 0
-        i = 1
         n = len(s)
-        while(i < n):
-          if(s[prev_index] == s[i]):
-            total_cost += min(cost[prev_index] , cost[i])
+        s_sum = 0
+        s_max = 0
+        ans = 0
+        
+        for i in range(0 , n):
+          if(s[i] != s[i-1] and i > 0):
+            ans += s_sum - s_max
+            s_sum = 0
+            s_max = 0
             
-            if(cost[prev_index] < cost[i]):
-              prev_index = i
-              
-          else:
-            prev_index = i
+          s_sum += cost[i]
+          s_max = max(s_max , cost[i])
           
-          i += 1
-          
-        return total_cost
+        ans += s_sum - s_max
+        
+        return ans

@@ -8,20 +8,20 @@ class Solution(object):
         :rtype: int
         """
         
-        heap = []
-        heapify(heap)
+        n = len(matrix)
+        l = matrix[0][0]
+        h = matrix[n-1][n-1]
         
-        for i in range(0 , len(matrix)):
-            for j in range(0 , len(matrix[0])):
-                heappush(heap , matrix[i][j])
-        
-        print(heap)
-        
+        while(l < h):
+            m = (l + h) / 2
+            count = 0 
+            for i in range(0 , n):
+                count += bisect_right(matrix[i], m)
+            if(count < k):
+                l = m + 1
+            else:
+                h = m
                 
-        while(k-1 != 0):
-            heappop(heap)
-            k -= 1
-            
-        kth_smallest = heappop(heap)
-        return kth_smallest
+        return l
+        
         

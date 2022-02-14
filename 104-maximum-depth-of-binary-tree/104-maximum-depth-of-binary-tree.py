@@ -4,6 +4,7 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+from collections import deque
 class Solution(object):
     def maxDepth(self, root):
         """
@@ -11,15 +12,22 @@ class Solution(object):
         :rtype: int
         """
         
-    
+        q = deque()
+        q.append(root)
+        level = 0
         
-        stack = [[root , 1]]
-        res = 0
+        if(root == None):
+            return 0 
         
-        while stack :
-            node , depth = stack.pop()
-            if node :
-                res = max(res, depth)
-                stack.append([node.left , depth + 1])
-                stack.append([node.right , depth + 1])
-        return res
+        while q:
+            for i in range(len(q)):
+                node = q.popleft()
+                if(node):
+                    if(node.left):
+                        q.append(node.left)
+                    if(node.right):
+                        q.append(node.right)
+                    
+            level += 1
+        
+        return level

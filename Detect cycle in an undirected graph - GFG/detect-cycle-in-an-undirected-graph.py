@@ -4,20 +4,17 @@ from collections import deque
 class Solution:
     
     #Function to detect cycle in an undirected graph.
-    def isCycleUtil(self , adj , s , vis):
-        vis[s] = 1
-        q = deque()
-        q.append([s , -1])
-        while(q):
-            node , parent = q.popleft()
-            
-            for i in adj[node]:
-                if(vis[i] == 0):
-                    q.append( [i , node])
-                    vis[i] = 1
-                elif(i != parent):
+    def isCycleUtil(self , node , parent ,  adj , vis):
+        vis[node] = 1
+        for i in adj[node]:
+            if(vis[i] == 0):
+                if(self.isCycleUtil(i , node , adj , vis)):
                     return True
+            elif(i != parent):
+                return True
+                    
         return False
+    
         
         
 	def isCycle(self, V, adj):
@@ -25,7 +22,7 @@ class Solution:
 		vis = [0]*V
 		for i in range(V):
 		    if(vis[i] == 0):
-		        if(self.isCycleUtil(adj , i , vis) == True):
+		        if(self.isCycleUtil(i , -1 , adj , vis) == True):
 		            return True
 		return False
 

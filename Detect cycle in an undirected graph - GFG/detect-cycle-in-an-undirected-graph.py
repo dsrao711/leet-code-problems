@@ -6,10 +6,10 @@ class Solution:
     #Function to detect cycle in an undirected graph.
     def isCycleUtil(self , adj , s , vis):
         vis[s] = 1
-        q = []
+        q = deque()
         q.append([s , -1])
         while(q):
-            node , parent = q.pop()
+            node , parent = q.popleft()
             
             for i in adj[node]:
                 if(vis[i] == 0):
